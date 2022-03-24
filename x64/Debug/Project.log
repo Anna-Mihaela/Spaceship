@@ -1,0 +1,12 @@
+﻿  Image.cpp
+  Player.cpp
+C:\Users\Mihai\Desktop\Project\Project\Player.cpp(56,53): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mihai\Desktop\Project\Project\Player.cpp(57,53): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mihai\Desktop\Project\Project\Player.cpp(61,53): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mihai\Desktop\Project\Project\Player.cpp(62,53): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mihai\Desktop\Project\Project\Player.cpp(66,53): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mihai\Desktop\Project\Project\Player.cpp(67,53): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mihai\Desktop\Project\Project\Player.cpp(71,53): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mihai\Desktop\Project\Project\Player.cpp(72,53): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Project.vcxproj -> C:\Users\Mihai\Desktop\Project\x64\Debug\Project.exe
