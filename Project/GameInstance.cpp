@@ -4,16 +4,10 @@
 #include "SDL_mixer.h"
 #include "SDL_ttf.h"
 
-GameInstance* GameInstance::m_Instance = nullptr;
-
-GameInstance* GameInstance::GetInstance()
+GameInstance& GameInstance::GetInstance()
 {
-    if (m_Instance == nullptr) 
-    {
-        m_Instance = new GameInstance();
-    }
-
-    return m_Instance;
+	static GameInstance instance;
+    return instance;
 }
 
 GameInstance::GameInstance()
@@ -23,11 +17,10 @@ GameInstance::GameInstance()
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
     TTF_Init();
 
-    m_Window = SDL_CreateWindow("Ana's Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 720, SDL_WINDOW_OPENGL);
+    m_Window = SDL_CreateWindow("Ana's Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HIGHT, SDL_WINDOW_OPENGL);
 	m_Renderer = SDL_CreateRenderer(m_Window, -1, SDL_RENDERER_ACCELERATED);
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
-	SDL_RenderSetLogicalSize(m_Renderer, 1024, 720);
     m_IsRunning = false;
     m_GameMode = nullptr;
 }
@@ -43,7 +36,7 @@ GameInstance::~GameInstance()
     SDL_Quit();
 }
 
-void GameInstance::OnStart()
+void GameInstance::StartGame()
 {
 	m_IsRunning = true;
     m_GameMode = new GameMode;
@@ -63,9 +56,9 @@ void GameInstance::Input()
     }
 }
 
-void GameInstance::Update(float DeltaTime)
+void GameInstance::Update(float deltaTime)
 {
-    m_GameMode->Update(DeltaTime);
+    m_GameMode->Update(deltaTime);
 }
 
 void GameInstance::Draw()

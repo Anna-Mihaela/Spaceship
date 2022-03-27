@@ -12,9 +12,9 @@ public:
 	Image(std::string address);
 	~Image();
 	
-	void Draw(SDL_FPoint location, double angle);
+	virtual void Draw(SDL_FPoint location, float angle);
 
-private:
+protected:
 	SDL_Renderer* m_Renderer;
 	SDL_Surface* m_Surface;
 	SDL_Texture* m_Texture;

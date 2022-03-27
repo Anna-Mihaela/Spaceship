@@ -4,8 +4,8 @@
 
 Image::Image(std::string address)
 {
-	GameInstance* gameInstance = GameInstance::GetInstance();
-	m_Renderer = gameInstance->GetRenderer();
+	GameInstance& gameInstance = GameInstance::GetInstance();
+	m_Renderer = gameInstance.GetRenderer();
 
 	m_Surface = IMG_Load(address.c_str());
 	m_Texture = SDL_CreateTextureFromSurface(m_Renderer, m_Surface);
@@ -17,7 +17,7 @@ Image::~Image()
 	SDL_FreeSurface(m_Surface);
 }
 
-void Image::Draw(SDL_FPoint location, double angle)
+void Image::Draw(SDL_FPoint location, float angle)
 {
 	SDL_FRect rectangle;
 	rectangle.x = location.x;

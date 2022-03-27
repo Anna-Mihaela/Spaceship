@@ -2,7 +2,7 @@
 #include "SDL_events.h"
 #include "SDL_rect.h"
 
-class Image;
+class Sprite;
 
 class Player
 {
@@ -15,9 +15,9 @@ public:
 	void Draw();
 
 private:
-	Image* m_Image;
+	Sprite* m_Sprite;
 	SDL_FPoint m_Location;
-	double m_Angle;
+	float m_Angle;
 	float m_Speed;
 
 	bool m_IsUpPressed;

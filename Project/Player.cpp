@@ -1,15 +1,19 @@
 #include "Player.h"
+#include "algorithm"
 #include "cmath"
 #include "GameInstance.h"
 #include "SDL_image.h"
-#include "Image.h"
+#include "Sprite.h"
+
+#undef M_PI
+#define M_PI       3.14159265358979323846f   // pi
 
 Player::Player()
 {
-	m_Image = new Image("Resources/Images/Player/Spaceship.png");
+	m_Sprite = new Sprite("Resources/Images/Player/Spaceship.png", 2, 1, 20);
 	m_Location.x = 0.0f;
 	m_Location.y = 0.0f;
-	m_Angle = -75.0f;
+	m_Angle = -90.0f;
 	m_Speed = 300.0f;
 
 	m_IsUpPressed = false;
@@ -44,6 +48,12 @@ void Player::Input(SDL_Event& Event)
 	case SDLK_d:
 		m_IsRightPressed = isPressed;
 		break;
+	case SDLK_q:
+		m_Angle++;
+		break;
+	case SDLK_e:
+		m_Angle--;
+		break;
 	default:
 		break;
 	}
@@ -51,30 +61,56 @@ void Player::Input(SDL_Event& Event)
 
 void Player::Update(float deltaTime)
 {
+	SDL_FPoint direction{ 0.0f, 0.0f };
+
 	if (m_IsUpPressed)
 	{
-		m_Location.x += sin(m_Angle) * m_Speed * deltaTime;
-		m_Location.y -= cos(m_Angle) * m_Speed * deltaTime;
+		direction.x += 1.0f;
 	}
 	if (m_IsDownPressed)
 	{
-		m_Location.x -= sin(m_Angle) * m_Speed * deltaTime;
-		m_Location.y += cos(m_Angle) * m_Speed * deltaTime;
+		direction.x -= 1.0f;
 	}
 	if (m_IsLeftPressed)
 	{
-		m_Location.x -= cos(m_Angle) * m_Speed * deltaTime;
-		m_Location.y -= sin(m_Angle) * m_Speed * deltaTime;
+		direction.y -= 1.0f;
 	}
 	if (m_IsRightPressed)
 	{
-		m_Location.x += cos(m_Angle) * m_Speed * deltaTime;
-		m_Location.y += sin(m_Angle) * m_Speed * deltaTime;
+		direction.y += 1.0f;
 	}
 
+	if (direction.x != 0.0f || direction.y != 0.0f)
+	{
+		// x = 1, y = 1 -> x = 0.707, y = 0.707
+		// Normalize direction
+		const float scale = 1.0f / std::hypotf(direction.x, direction.y);
+		direction.x *= scale;
+		direction.y *= scale;
+
+		// Rotate axis
+		// Apply angle to direction
+		float angleRadians = m_Angle * (M_PI / 180.0f);
+		float cosAngle = std::cos(angleRadians);
+		float sinAngle = std::sin(angleRadians);
+		direction = SDL_FPoint(direction.x * cosAngle - direction.y * sinAngle, 
+			direction.x * sinAngle + direction.y * cosAngle);
+
+		// Apply movement
+		float speed = m_Speed * deltaTime;
+		m_Location.x += direction.x * speed;
+		m_Location.y += direction.y * speed;
+
+		// Limit movement to boundaries
+		SDL_FPoint size = m_Sprite->GetSize();
+		m_Location.x = std::clamp<float>(m_Location.x, 0, WINDOW_WIDTH - size.x);
+		m_Location.y = std::clamp<float>(m_Location.y, 0, WINDOW_HIGHT - size.y);
+	}
+
+	m_Sprite->Update(deltaTime);
 }
 
 void Player::Draw()
 {
-	m_Image->Draw(m_Location, m_Angle);
+	m_Sprite->Draw(m_Location, m_Angle);
 }
