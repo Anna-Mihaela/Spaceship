@@ -44,7 +44,7 @@ void Sprite::Update(float deltaTime)
 	}
 }
 
-void Sprite::Draw(SDL_FPoint location, float angle)
+void Sprite::Draw(SDL_FPoint location, float angle, SDL_RendererFlip flip)
 {
 	SDL_Rect source;
 	source.x = m_Size.x * m_CurrentColumn;
@@ -58,5 +58,5 @@ void Sprite::Draw(SDL_FPoint location, float angle)
 	rectangle.w = m_Size.x;
 	rectangle.h = m_Size.y;
 
-	SDL_RenderCopyExF(m_Renderer, m_Texture, &source, &rectangle, angle, nullptr, SDL_FLIP_NONE);
+	SDL_RenderCopyExF(m_Renderer, m_Texture, &source, &rectangle, angle, nullptr, flip);
 }

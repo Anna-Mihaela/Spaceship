@@ -14,7 +14,8 @@ Player::Player()
 	m_Location.x = 0.0f;
 	m_Location.y = 0.0f;
 	m_Angle = -90.0f;
-	m_Speed = 300.0f;
+	m_MovementSpeed = 300.0f;
+	m_RotationSpeed = 30.0f;
 
 	m_IsUpPressed = false;
 	m_IsDownPressed = false;
@@ -49,10 +50,10 @@ void Player::Input(SDL_Event& Event)
 		m_IsRightPressed = isPressed;
 		break;
 	case SDLK_q:
-		m_Angle++;
+		m_IsRLeftPressed = isPressed;
 		break;
 	case SDLK_e:
-		m_Angle--;
+		m_IsRRightPressed = isPressed;
 		break;
 	default:
 		break;
@@ -61,8 +62,22 @@ void Player::Input(SDL_Event& Event)
 
 void Player::Update(float deltaTime)
 {
-	SDL_FPoint direction{ 0.0f, 0.0f };
+	float rotation = 0.0f;
+	if (m_IsRLeftPressed)
+	{
+		rotation = -1.0f;
+	}
+	if (m_IsRRightPressed)
+	{
+		rotation = 1.0f;
+	}
 
+	if (rotation != 0.0f)
+	{
+		m_Angle = rotation * m_RotationSpeed * deltaTime;
+	}
+
+	SDL_FPoint direction{ 0.0f, 0.0f };
 	if (m_IsUpPressed)
 	{
 		direction.x += 1.0f;
@@ -97,14 +112,14 @@ void Player::Update(float deltaTime)
 			direction.x * sinAngle + direction.y * cosAngle);
 
 		// Apply movement
-		float speed = m_Speed * deltaTime;
+		float speed = m_MovementSpeed * deltaTime;
 		m_Location.x += direction.x * speed;
 		m_Location.y += direction.y * speed;
 
 		// Limit movement to boundaries
 		SDL_FPoint size = m_Sprite->GetSize();
 		m_Location.x = std::clamp<float>(m_Location.x, 0, WINDOW_WIDTH - size.x);
-		m_Location.y = std::clamp<float>(m_Location.y, 0, WINDOW_HIGHT - size.y);
+		m_Location.y = std::clamp<float>(m_Location.y, 0, WINDOW_HEIGHT - size.y);
 	}
 
 	m_Sprite->Update(deltaTime);

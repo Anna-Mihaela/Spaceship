@@ -1,6 +1,8 @@
 #pragma once
+#include "vector"
 
 union SDL_Event;
+class Asteroid;
 class Player;
 
 class GameMode
@@ -15,5 +17,6 @@ public:
 
 private:
 	Player* m_Player;
+	std::vector<Asteroid*> m_Asteroids;
 };
 

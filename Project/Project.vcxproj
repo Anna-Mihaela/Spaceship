@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Asteroid.cpp" />
     <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="GameMode.cpp" />
     <ClCompile Include="Image.cpp" />
@@ -27,6 +28,7 @@
     <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Asteroid.h" />
     <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GameMode.h" />
     <ClInclude Include="Image.h" />

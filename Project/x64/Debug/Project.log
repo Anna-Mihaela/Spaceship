@@ -1,4 +1,10 @@
-﻿  GameInstance.cpp
+﻿  Asteroid.cpp
+C:\Users\Mihai\Desktop\Spaceship\Project\Asteroid.cpp(39,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Mihai\Desktop\Spaceship\Project\Asteroid.cpp(41,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Mihai\Desktop\Spaceship\Project\Asteroid.cpp(43,28): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\Mihai\Desktop\Spaceship\Project\Asteroid.cpp(43,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  GameInstance.cpp
+  GameMode.cpp
   Image.cpp
   Main.cpp
   Player.cpp

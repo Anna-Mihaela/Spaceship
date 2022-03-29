@@ -9,7 +9,7 @@ public:
 	~Sprite();
 	
 	void Update(float deltaTime);
-	virtual void Draw(SDL_FPoint location, float angle) override;
+	virtual void Draw(SDL_FPoint location, float angle, SDL_RendererFlip flip = SDL_FLIP_NONE) override;
 	SDL_FPoint GetSize() const { return m_Size; }
 
 private:

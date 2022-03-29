@@ -17,7 +17,7 @@ Image::~Image()
 	SDL_FreeSurface(m_Surface);
 }
 
-void Image::Draw(SDL_FPoint location, float angle)
+void Image::Draw(SDL_FPoint location, float angle, SDL_RendererFlip flip)
 {
 	SDL_FRect rectangle;
 	rectangle.x = location.x;
@@ -25,5 +25,5 @@ void Image::Draw(SDL_FPoint location, float angle)
 	rectangle.h = (float)m_Surface->h;
 	rectangle.w = (float)m_Surface->w;
 
-	SDL_RenderCopyExF(m_Renderer, m_Texture, nullptr, &rectangle, angle, nullptr, SDL_FLIP_NONE);
+	SDL_RenderCopyExF(m_Renderer, m_Texture, nullptr, &rectangle, angle, nullptr, flip);
 }
