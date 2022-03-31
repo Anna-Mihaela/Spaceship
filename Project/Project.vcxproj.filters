@@ -61,6 +61,12 @@
     <ClCompile Include="Asteroid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Laser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameInstance.h">
@@ -82,6 +88,12 @@
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Asteroid.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Laser.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

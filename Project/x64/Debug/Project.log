@@ -1,12 +1,8 @@
-﻿  Asteroid.cpp
-C:\Users\Mihai\Desktop\Spaceship\Project\Asteroid.cpp(39,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Mihai\Desktop\Spaceship\Project\Asteroid.cpp(41,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Mihai\Desktop\Spaceship\Project\Asteroid.cpp(43,28): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\Mihai\Desktop\Spaceship\Project\Asteroid.cpp(43,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  GameInstance.cpp
-  GameMode.cpp
-  Image.cpp
+﻿  GameMode.cpp
+  Laser.cpp
+C:\Users\Mihai\Desktop\Spaceship\Project\Laser.cpp(12,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Main.cpp
   Player.cpp
+  Projectile.cpp
   Generating Code...
   Project.vcxproj -> C:\Users\Mihai\Desktop\Spaceship\x64\Debug\Project.exe

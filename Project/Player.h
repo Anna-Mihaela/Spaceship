@@ -28,5 +28,7 @@ private:
 
 	bool m_IsRLeftPressed;
 	bool m_IsRRightPressed;
+
+	bool m_IsShootPressed;
 };
 

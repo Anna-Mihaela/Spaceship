@@ -2,6 +2,7 @@
 #include "algorithm"
 #include "cmath"
 #include "GameInstance.h"
+#include "Laser.h"
 #include "SDL_image.h"
 #include "Sprite.h"
 
@@ -15,12 +16,14 @@ Player::Player()
 	m_Location.y = 0.0f;
 	m_Angle = -90.0f;
 	m_MovementSpeed = 300.0f;
-	m_RotationSpeed = 30.0f;
+	m_RotationSpeed = 45.0f;
 
 	m_IsUpPressed = false;
 	m_IsDownPressed = false;
 	m_IsLeftPressed = false;
 	m_IsRightPressed = false;
+	m_IsRRightPressed = false;
+	m_IsRLeftPressed = false;
 }
 
 Player::~Player()
@@ -55,6 +58,9 @@ void Player::Input(SDL_Event& Event)
 	case SDLK_e:
 		m_IsRRightPressed = isPressed;
 		break;
+	case SDLK_SPACE:
+		m_IsShootPressed = isPressed;
+		break; 
 	default:
 		break;
 	}
@@ -62,54 +68,62 @@ void Player::Input(SDL_Event& Event)
 
 void Player::Update(float deltaTime)
 {
-	float rotation = 0.0f;
+	float rotationInput = 0.0f;
 	if (m_IsRLeftPressed)
 	{
-		rotation = -1.0f;
+		rotationInput = -1.0f;
 	}
 	if (m_IsRRightPressed)
 	{
-		rotation = 1.0f;
+		rotationInput = 1.0f;
 	}
 
-	if (rotation != 0.0f)
-	{
-		m_Angle = rotation * m_RotationSpeed * deltaTime;
-	}
-
-	SDL_FPoint direction{ 0.0f, 0.0f };
+	SDL_FPoint movementInput{ 0.0f, 0.0f };
 	if (m_IsUpPressed)
 	{
-		direction.x += 1.0f;
+		movementInput.x += 1.0f;
 	}
 	if (m_IsDownPressed)
 	{
-		direction.x -= 1.0f;
+		movementInput.x -= 1.0f;
 	}
 	if (m_IsLeftPressed)
 	{
-		direction.y -= 1.0f;
+		movementInput.y -= 1.0f;
 	}
 	if (m_IsRightPressed)
 	{
-		direction.y += 1.0f;
+		movementInput.y += 1.0f;
 	}
 
-	if (direction.x != 0.0f || direction.y != 0.0f)
+	if (m_IsShootPressed)
+	{
+		GameInstance& gameInstance = GameInstance::GetInstance();
+		GameMode* gameMode = gameInstance.GetGameMode();
+
+	}
+
+	if (rotationInput != 0.0f)
+	{
+		m_Angle += rotationInput * m_RotationSpeed * deltaTime;
+	}
+
+	if (movementInput.x != 0.0f || movementInput.y != 0.0f)
 	{
 		// x = 1, y = 1 -> x = 0.707, y = 0.707
 		// Normalize direction
-		const float scale = 1.0f / std::hypotf(direction.x, direction.y);
-		direction.x *= scale;
-		direction.y *= scale;
+		const float scale = 1.0f / std::hypotf(movementInput.x, movementInput.y);
+		movementInput.x *= scale;
+		movementInput.y *= scale;
 
 		// Rotate axis
 		// Apply angle to direction
-		float angleRadians = m_Angle * (M_PI / 180.0f);
+		float angleRadians = m_Angle * (M_PI * 0.0055555f);  // inverse of 180
 		float cosAngle = std::cos(angleRadians);
 		float sinAngle = std::sin(angleRadians);
-		direction = SDL_FPoint(direction.x * cosAngle - direction.y * sinAngle, 
-			direction.x * sinAngle + direction.y * cosAngle);
+		SDL_FPoint direction;
+		direction.x = movementInput.x * cosAngle - movementInput.y * sinAngle;
+		direction.y = movementInput.x * sinAngle + movementInput.y * cosAngle;
 
 		// Apply movement
 		float speed = m_MovementSpeed * deltaTime;
