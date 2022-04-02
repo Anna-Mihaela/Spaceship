@@ -4,7 +4,9 @@
 
 Asteroid::Asteroid()
 {
-	m_Sprite = new Sprite("Resources/Images/Entity/Fireball.png", 4, 6, 20);
+	std::string address = rand() & 1 ? "Resources/Images/EntityRed.png" : "Resources/Images/EntityBlue.png";
+	m_Sprite = new Sprite(address, 1, 12, 20);
+
 	SetRandomValues();
 }
 

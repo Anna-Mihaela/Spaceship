@@ -5,7 +5,7 @@
 
 Laser::Laser(SDL_FPoint location, float speed, float angle)
 {
-	m_Sprite = new Sprite("Resources/Images/Player/Lasers.png", 5, 1, 20);
+	m_Sprite = new Sprite("Resources/Images/Lasers.png", 5, 1, 20);
 	m_Location = location;
 	m_Speed = speed;
 	m_Angle = angle;

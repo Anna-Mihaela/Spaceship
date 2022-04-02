@@ -10,7 +10,7 @@
 
 Player::Player()
 {
-	m_Sprite = new Sprite("Resources/Images/Player/Spaceship.png", 2, 1, 20);
+	m_Sprite = new Sprite("Resources/Images/Spaceship.png", 2, 1, 20);
 	m_Location = WINDOW_CENTER;
 	m_Angle = -90.0f;
 	m_MovementSpeed = 300.0f;
