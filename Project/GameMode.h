@@ -21,6 +21,6 @@ public:
 private:
 	Player m_Player;
 	std::vector<Asteroid> m_Asteroids;
-	std::vector<Projectile> m_Projectiles;
+	std::vector<Projectile*> m_Projectiles;
 };
 

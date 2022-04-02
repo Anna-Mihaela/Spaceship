@@ -20,6 +20,8 @@ private:
 	float m_Angle;
 	float m_MovementSpeed;
 	float m_RotationSpeed;
+	float m_FireRate;
+	float m_FireDelay;
 
 	bool m_IsUpPressed;
 	bool m_IsDownPressed;

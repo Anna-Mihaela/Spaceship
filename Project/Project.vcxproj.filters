@@ -38,6 +38,9 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{5de7b3d3-e310-4025-94a8-195c300db950}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{9bf91e1a-b1cd-4ef9-9976-3fd748b7f485}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameInstance.cpp">
@@ -49,9 +52,6 @@
     <ClCompile Include="GameMode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Image.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
@@ -59,13 +59,16 @@
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Asteroid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Projectile.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Laser.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,9 +81,6 @@
     <ClInclude Include="GameMode.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
@@ -88,13 +88,16 @@
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Asteroid.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Projectile.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Laser.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

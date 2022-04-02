@@ -14,6 +14,7 @@ public:
 
 protected:
 	void SetRandomValues();
+	float GetRandomFloat(int n);
 
 private:
 	Sprite* m_Sprite;

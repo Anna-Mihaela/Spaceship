@@ -12,6 +12,9 @@ public:
 	virtual void Update(float deltaTime);
 	void Draw();
 
+	SDL_FPoint GetLocation() const;
+	SDL_FPoint GetSize() const;
+
 protected:
 	Sprite* m_Sprite;
 	SDL_FPoint m_Location;

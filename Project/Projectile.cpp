@@ -22,12 +22,6 @@ void Projectile::Update(float deltaTime)
 	{
 		m_Sprite->Update(deltaTime);
 	}
-
-// 	if (m_Location.x < 0 || m_Location.x > WINDOW_WIDTH 
-// 		|| m_Location.y < 0 || m_Location.y > WINDOW_HEIGHT)
-// 	{
-// 		delete this;
-// 	}
 }
 
 void Projectile::Draw()
@@ -36,4 +30,14 @@ void Projectile::Draw()
 	{
 		m_Sprite->Draw(m_Location, m_Angle);
 	}
+}
+
+SDL_FPoint Projectile::GetLocation() const
+{
+	return m_Location;
+}
+
+SDL_FPoint Projectile::GetSize() const
+{
+	return m_Sprite->GetSize();
 }

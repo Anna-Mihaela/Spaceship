@@ -2,6 +2,7 @@
 #include "algorithm"
 #include "cmath"
 #include "GameInstance.h"
+#include "GameMode.h"
 #include "Laser.h"
 #include "SDL_image.h"
 #include "Sprite.h"
@@ -17,6 +18,8 @@ Player::Player()
 	m_Angle = -90.0f;
 	m_MovementSpeed = 300.0f;
 	m_RotationSpeed = 45.0f;
+	m_FireRate = 0.5f;
+	m_FireDelay = 0.0f;
 
 	m_IsUpPressed = false;
 	m_IsDownPressed = false;
@@ -24,10 +27,12 @@ Player::Player()
 	m_IsRightPressed = false;
 	m_IsRRightPressed = false;
 	m_IsRLeftPressed = false;
+	m_IsShootPressed = false;
 }
 
 Player::~Player()
 {
+	delete m_Sprite;
 }
 
 void Player::Input(SDL_Event& Event)
@@ -96,11 +101,19 @@ void Player::Update(float deltaTime)
 		movementInput.y += 1.0f;
 	}
 
-	if (m_IsShootPressed)
+	// Fire
+	if (m_FireDelay > 0.0f)
+	{
+		m_FireDelay -= deltaTime;
+	}
+
+	if (m_IsShootPressed && m_FireDelay <= 0.0f)
 	{
 		GameInstance& gameInstance = GameInstance::GetInstance();
 		GameMode* gameMode = gameInstance.GetGameMode();
 
+		gameMode->SpawnLaser(m_Location, 500.0f, m_Angle);
+		m_FireDelay = m_FireRate;
 	}
 
 	if (rotationInput != 0.0f)

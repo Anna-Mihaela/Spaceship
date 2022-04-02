@@ -14,6 +14,13 @@ GameMode::GameMode()
 
 GameMode::~GameMode()
 {
+	m_Asteroids.clear();
+
+	for (Projectile* p : m_Projectiles)
+	{
+		delete p;
+	}
+	m_Projectiles.clear();
 }
 
 void GameMode::Input(SDL_Event& Event)
@@ -30,9 +37,19 @@ void GameMode::Update(float deltaTime)
 		a.Update(deltaTime);
 	}
 
-	for (Projectile& a : m_Projectiles)
+	for (int i = 0; i < m_Projectiles.size(); i++)
 	{
-		a.Update(deltaTime);
+		m_Projectiles[i]->Update(deltaTime);
+
+		SDL_FPoint location = m_Projectiles[i]->GetLocation();
+		SDL_FPoint size = m_Projectiles[i]->GetSize();
+		if (location.x < -size.x || location.x > WINDOW_WIDTH
+			|| location.y < -size.y || location.y > WINDOW_HEIGHT)
+		{
+			delete m_Projectiles[i];
+			m_Projectiles.erase(m_Projectiles.begin() + i);
+			i--;
+		}
 	}
 }
 
@@ -45,13 +62,13 @@ void GameMode::Draw()
 		a.Draw();
 	}
 
-	for (Projectile& a : m_Projectiles)
+	for (Projectile* p : m_Projectiles)
 	{
-		a.Draw();
+		p->Draw();
 	}
 }
 
 void GameMode::SpawnLaser(SDL_FPoint location, float speed, float angle)
 {
-	m_Projectiles.push_back(Laser(location, speed, angle));
+	m_Projectiles.push_back(new Laser(location, speed, angle));
 }

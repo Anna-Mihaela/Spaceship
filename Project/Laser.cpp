@@ -10,15 +10,8 @@ Laser::Laser(SDL_FPoint location, float speed, float angle)
 	m_Angle = angle;
 
 	float angleRadians = m_Angle * (M_PI * 0.0055555f); // inverse of 180
-	float cosAngle = std::cos(angleRadians);
-	float sinAngle = std::sin(angleRadians);
-	m_Direction.x = cosAngle - sinAngle;
-	m_Direction.y = sinAngle + cosAngle;
-}
-
-Laser::~Laser()
-{
-	
+	m_Direction.x = std::cos(angleRadians);
+	m_Direction.y = std::sin(angleRadians);
 }
 
 void Laser::Update(float deltaTime)

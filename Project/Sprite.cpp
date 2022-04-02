@@ -17,11 +17,6 @@ Sprite::Sprite(std::string address, int totalRows, int totalColumns, int fps)
 	m_ElapsedTime = 0.0f;
 }
 
-Sprite::~Sprite()
-{
-
-}
-
 void Sprite::Update(float deltaTime)
 {
 	m_ElapsedTime += deltaTime;

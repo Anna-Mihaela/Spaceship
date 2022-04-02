@@ -11,7 +11,7 @@ Asteroid::Asteroid()
 
 Asteroid::~Asteroid()
 {
-
+	delete m_Sprite;
 }
 
 void Asteroid::Update(float deltaTime)
@@ -34,16 +34,21 @@ void Asteroid::Draw()
 
 void Asteroid::SetRandomValues()
 {
-	m_Speed = 100.0f + (rand() % 101);
+	m_Speed = 100.0f + GetRandomFloat(100);
 	m_Flip = SDL_RendererFlip(rand() % 3);
-	m_Angle = (rand() % 361);
+	m_Angle = GetRandomFloat(360);
 
-	m_Location.x = rand() % WINDOW_WIDTH;
+	m_Location.x = GetRandomFloat(WINDOW_WIDTH);
 	m_Location.y = -m_Sprite->GetSize().y;
-	SDL_FPoint target{ rand() % WINDOW_WIDTH, WINDOW_HEIGHT };
+	SDL_FPoint target{ GetRandomFloat(WINDOW_WIDTH), WINDOW_HEIGHT };
 
 	SDL_FPoint delta{ target.x - m_Location.x, target.y - m_Location.y };
 	const float scale = 1.0f / std::hypotf(delta.x, delta.y);
 	m_Direction.x = delta.x * scale;
 	m_Direction.y = delta.y * scale;
+}
+
+float Asteroid::GetRandomFloat(int n)
+{
+	return float(rand() % (n + 1));
 }

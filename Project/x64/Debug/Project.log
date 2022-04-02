@@ -1,8 +1,5 @@
-﻿  GameMode.cpp
-  Laser.cpp
-C:\Users\Mihai\Desktop\Spaceship\Project\Laser.cpp(12,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Main.cpp
-  Player.cpp
-  Projectile.cpp
+﻿  Asteroid.cpp
+  GameMode.cpp
+  Image.cpp
   Generating Code...
   Project.vcxproj -> C:\Users\Mihai\Desktop\Spaceship\x64\Debug\Project.exe

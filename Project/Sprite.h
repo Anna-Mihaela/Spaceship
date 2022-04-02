@@ -6,7 +6,6 @@ class Sprite : public Image
 {
 public:
 	Sprite(std::string address, int totalRows, int totalColumns, int fps);
-	~Sprite();
 	
 	void Update(float deltaTime);
 	virtual void Draw(SDL_FPoint location, float angle, SDL_RendererFlip flip = SDL_FLIP_NONE) override;
