@@ -1,5 +1,10 @@
 ﻿  Asteroid.cpp
+  GameInstance.cpp
   GameMode.cpp
   Image.cpp
+  Laser.cpp
+  Main.cpp
+  Player.cpp
+  Projectile.cpp
   Generating Code...
   Project.vcxproj -> C:\Users\Mihai\Desktop\Spaceship\x64\Debug\Project.exe

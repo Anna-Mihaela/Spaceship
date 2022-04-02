@@ -1,5 +1,6 @@
 #include "Laser.h"
 #include "cmath"
+#include "Main.h"
 #include "Sprite.h"
 
 Laser::Laser(SDL_FPoint location, float speed, float angle)

@@ -15,12 +15,13 @@ GameInstance::GameInstance()
     SDL_Init(SDL_INIT_EVERYTHING);
     IMG_Init(IMG_INIT_PNG);
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-    TTF_Init();
+	TTF_Init();
 
-    m_Window = SDL_CreateWindow("Ana's Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_OPENGL);
-	m_Renderer = SDL_CreateRenderer(m_Window, -1, SDL_RENDERER_ACCELERATED);
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
+
+    m_Window = SDL_CreateWindow(GAME_NAME, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_OPENGL);
+	m_Renderer = SDL_CreateRenderer(m_Window, -1, SDL_RENDERER_ACCELERATED);
     m_IsRunning = false;
     m_GameMode = nullptr;
 }

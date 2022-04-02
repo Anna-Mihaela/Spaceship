@@ -1,4 +1,5 @@
 #include "GameMode.h"
+#include "cmath"
 #include "Laser.h"
 #include "Main.h"
 #include "SDL_events.h"
@@ -6,10 +7,7 @@
 
 GameMode::GameMode()
 {
-	for (int i = 0; i < ASTEROID_COUNT; i++)
-	{
-		m_Asteroids.push_back(Asteroid());
-	}
+	m_Asteroids.resize(ASTEROID_COUNT);
 }
 
 GameMode::~GameMode()
@@ -49,6 +47,29 @@ void GameMode::Update(float deltaTime)
 			delete m_Projectiles[i];
 			m_Projectiles.erase(m_Projectiles.begin() + i);
 			i--;
+		}
+	}
+
+	for (Asteroid& a : m_Asteroids)
+	{
+		for (int i = 0; i < m_Projectiles.size(); i++)
+		{
+			SDL_FPoint locA = a.GetLocation();
+			SDL_FPoint locP = m_Projectiles[i]->GetLocation();
+			SDL_FPoint delta(locA.x - locP.x, locA.y - locP.y);
+			float distance = std::hypotf(delta.x, delta.y);
+
+			SDL_FPoint sizeP = m_Projectiles[i]->GetSize();
+			SDL_FPoint sizeA = a.GetSize();
+			float radius = (sizeP.x + sizeP.y + sizeA.x + sizeA.y) / 5;
+
+			if (distance < radius)
+			{
+				a.SetRandomValues();
+				delete m_Projectiles[i];
+				m_Projectiles.erase(m_Projectiles.begin() + i);
+				i--;
+			}
 		}
 	}
 }

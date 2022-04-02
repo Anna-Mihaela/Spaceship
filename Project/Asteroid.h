@@ -1,7 +1,6 @@
 #pragma once
 #include "SDL_render.h"
-
-class Sprite;
+#include "Sprite.h"
 
 class Asteroid
 {
@@ -12,8 +11,11 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-protected:
 	void SetRandomValues();
+	SDL_FPoint GetLocation() const { return m_Location; }
+	SDL_FPoint GetSize() const { return m_Sprite->GetSize(); }
+
+protected:
 	float GetRandomFloat(int n);
 
 private:

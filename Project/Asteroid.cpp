@@ -1,7 +1,6 @@
 #include "Asteroid.h"
 #include "cmath"
 #include "Main.h"
-#include "Sprite.h"
 
 Asteroid::Asteroid()
 {

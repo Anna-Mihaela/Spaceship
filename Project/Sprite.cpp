@@ -42,10 +42,10 @@ void Sprite::Update(float deltaTime)
 void Sprite::Draw(SDL_FPoint location, float angle, SDL_RendererFlip flip)
 {
 	SDL_Rect source;
-	source.x = m_Size.x * m_CurrentColumn;
-	source.y = m_Size.y * m_CurrentRow;
-	source.w = m_Size.x;
-	source.h = m_Size.y;
+	source.x = (int)m_Size.x * m_CurrentColumn;
+	source.y = (int)m_Size.y * m_CurrentRow;
+	source.w = (int)m_Size.x;
+	source.h = (int)m_Size.y;
 
 	SDL_FRect rectangle;
 	rectangle.x = location.x;

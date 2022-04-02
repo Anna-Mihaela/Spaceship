@@ -3,18 +3,15 @@
 #include "cmath"
 #include "GameInstance.h"
 #include "GameMode.h"
+#include "Main.h"
 #include "Laser.h"
 #include "SDL_image.h"
 #include "Sprite.h"
 
-#undef M_PI
-#define M_PI       3.14159265358979323846f   // pi
-
 Player::Player()
 {
 	m_Sprite = new Sprite("Resources/Images/Player/Spaceship.png", 2, 1, 20);
-	m_Location.x = 0.0f;
-	m_Location.y = 0.0f;
+	m_Location = WINDOW_CENTER;
 	m_Angle = -90.0f;
 	m_MovementSpeed = 300.0f;
 	m_RotationSpeed = 45.0f;
